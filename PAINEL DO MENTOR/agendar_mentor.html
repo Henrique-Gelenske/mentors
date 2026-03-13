@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendar Sessão - Mentors</title>
+  <link rel="stylesheet" href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/style.css">
+  <style>
+    .form-agendamento {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .form-agendamento label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+    }
+    .form-agendamento input,
+    .form-agendamento textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .form-agendamento button {
+      margin-top: 1rem;
+      background: #0073e6;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .botao-voltar {
+      display: inline-block;
+      margin-bottom: 1rem;
+      background: #003366;
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      margin-left: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Mentors</div>
+    <nav>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html">Início</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#quem-somos">Quem somos</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#beneficios">Benefícios</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#porque-usar">Por que usar a mentoria</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/mentores.html">Mentores</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/login.html">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 style="text-align:center;">Agendar Nova Sessão</h1>
+    <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/painel_mentor.html" class="botao-voltar">← Voltar ao Painel</a>
+
+    <section class="form-agendamento">
+      <form id="formMentor">
+        <label for="data">Data:</label>
+        <input type="date" id="data" required>
+
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" required>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" rows="3" required></textarea>
+
+        <button type="submit">Agendar Sessão</button>
+      </form>
+    </section>
+  </main>
+
+  <footer style="text-align:center; margin-top:2rem;">
+    <p>&copy; 2025 Mentors - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('formMentor');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nova = {
+        data: document.getElementById('data').value,
+        hora: document.getElementById('hora').value,
+        descricao: document.getElementById('descricao').value
+      };
+      const agendamentos = JSON.parse(localStorage.getItem('mentor_sessoes') || '[]');
+      agendamentos.push(nova);
+      localStorage.setItem('mentor_sessoes', JSON.stringify(agendamentos));
+      form.reset();
+      alert('Sessão agendada com sucesso!');
+    });
+  </script>
+</body>
+</html>

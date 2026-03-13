@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendário de Reuniões - Mentors</title>
+  <link rel="stylesheet" href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/style.css">
+  <style>
+    .form-agendamento {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    .form-agendamento label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+    }
+    .form-agendamento input,
+    .form-agendamento textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .agendamentos {
+      background: #e6f2ff;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .agendamento-item {
+      background: #fff;
+      margin-bottom: 0.8rem;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border-left: 5px solid #ff7f2a;
+      position: relative;
+    }
+    .agendamento-item button {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .filter-export {
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .filter-export input[type="date"] {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .filter-export button {
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Mentors</div>
+    <nav>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html">Início</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#quem-somos">Quem somos</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#beneficios">Benefícios</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#porque-usar">Por que usar a mentoria</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/mentores.html">Mentores</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/login.html">Logout</a>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <h1>Calendário de Reuniões</h1>
+    <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/painel_aluno.html" class="botao-voltar">← Voltar ao Painel</a>
+
+    <section class="form-agendamento">
+      <h2>Agendar Nova Mentoria</h2>
+      <form id="formMentoria">
+        <label for="data">Data:</label>
+        <input type="date" id="data" required>
+
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" required>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" rows="3" required></textarea>
+
+        <button class="orange" type="submit">Agendar</button>
+      </form>
+    </section>
+
+    <section class="agendamentos">
+      <div class="filter-export">
+        <div>
+          <label for="filtroData"><strong>Filtrar por data:</strong></label>
+          <input type="date" id="filtroData">
+        </div>
+        <button onclick="window.print()">Exportar para PDF</button>
+      </div>
+      <h2>Mentorias Agendadas</h2>
+      <div id="listaAgendamentos"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Mentors - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('formMentoria');
+    const lista = document.getElementById('listaAgendamentos');
+    const filtroData = document.getElementById('filtroData');
+
+    function renderizarAgendamentos(filtrar = "") {
+      const agendamentos = JSON.parse(localStorage.getItem('mentorias') || '[]');
+      lista.innerHTML = '';
+      agendamentos.forEach((ag, index) => {
+        if (filtrar && ag.data !== filtrar) return;
+        const item = document.createElement('div');
+        item.className = 'agendamento-item';
+        item.innerHTML = `<strong>${ag.data} às ${ag.hora}</strong><br>${ag.descricao}
+          <button onclick="excluirAgendamento(${index})">Excluir</button>`;
+        lista.appendChild(item);
+      });
+    }
+
+    function excluirAgendamento(index) {
+      const agendamentos = JSON.parse(localStorage.getItem('mentorias') || '[]');
+      agendamentos.splice(index, 1);
+      localStorage.setItem('mentorias', JSON.stringify(agendamentos));
+      renderizarAgendamentos(filtroData.value);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nova = {
+        data: document.getElementById('data').value,
+        hora: document.getElementById('hora').value,
+        descricao: document.getElementById('descricao').value
+      };
+      const agendamentos = JSON.parse(localStorage.getItem('mentorias') || '[]');
+      agendamentos.push(nova);
+      localStorage.setItem('mentorias', JSON.stringify(agendamentos));
+      form.reset();
+      renderizarAgendamentos(filtroData.value);
+    });
+
+    filtroData.addEventListener('change', () => renderizarAgendamentos(filtroData.value));
+    document.addEventListener('DOMContentLoaded', () => renderizarAgendamentos());
+  </script>
+</body>
+</html>

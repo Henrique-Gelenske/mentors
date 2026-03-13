@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Progresso do Aluno - Mentors</title>
+  <!-- <link rel="stylesheet" href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/style.css"> -->
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f9ff;
+      margin: 0;
+      padding: 0;
+    }
+    .topbar {
+      background-color: #003366;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .topbar nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .dashboard {
+      padding: 2rem;
+    }
+    .dashboard h1 {
+      margin-bottom: 1rem;
+    }
+    .progresso-container {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .topico {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 5px solid #0073e6;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+    .status {
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .concluido {
+      background-color: #d1f0d1;
+      color: #2e7d32;
+    }
+    .andamento {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .botao-voltar {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      background: #003366;
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #003366;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Mentors</div>
+   <nav>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html">Início</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#quem-somos">Quem somos</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#beneficios">Benefícios</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/index.html#porque-usar">Por que usar a mentoria</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/mentores.html">Mentores</a>
+      <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/login.html">Logout</a>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <h1>Progresso do Aluno</h1>
+    <a href="/Users/Desktop/OneDrive/Área de Trabalho/Site Mentoria/painel_aluno.html" class="botao-voltar">← Voltar ao Painel</a>
+
+    <section class="progresso-container">
+      <div class="topico">
+        <span>Direito Constitucional</span>
+        <span class="status andamento">Em andamento</span>
+      </div>
+      <div class="topico">
+        <span>Português</span>
+        <span class="status concluido">Concluído</span>
+      </div>
+      <div class="topico">
+        <span>Raciocínio Lógico</span>
+        <span class="status andamento">Em andamento</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Mentors - Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
