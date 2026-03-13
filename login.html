@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Mentors</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Mentors</div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="index.html#quem-somos">Quem somos</a>
+      <a href="index.html#beneficios">Benefícios</a>
+      <a href="mentores.html">Mentores</a>
+    </nav>
+  </header>
+
+  <main class="login-page">
+    <div class="login-box">
+      <h2>Fazer Login</h2>
+      <form id="loginForm">
+        <label for="perfil">Sou:</label>
+        <select id="perfil" required>
+          <option value="aluno">ALUNO</option>
+          <option value="mentor">MENTOR</option>
+        </select>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" placeholder="seu@email.com" required>
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" placeholder="••••••••" required>
+
+        <button type="submit" class="orange">Entrar</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>
